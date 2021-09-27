@@ -6,9 +6,26 @@ TODO
 
 ## Installation
 
+`bundle install`
+
+#### Ubuntu Based
+
+If you're using Ubuntu based distro you'll need to install `libgtk2.0-dev` in order to run the project
+
+#### Other OS
+
+Due the usage of the gem FFI you'll probably have a problem this missing files `libgobject-2.0.so`, so you'll need to
+install the respective library that will provide it. Probably installing a `gtk` lib should be enough to run the project
+
 TODO
 
 ## Usage
+
+`bin/pomodoro`
+
+or
+
+`ruby bin/pomodoro`
 
 TODO
 
@@ -21,8 +38,8 @@ TODO
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/lucasmenezesds/pomodoro-in-ruby-cli. This project is intended to be a
-safe, welcoming space for collaboration, and contributors are expected to adhere to
+Bug reports and pull requests are welcome on GitHub at https://github.com/lucasmenezesds/pomodoro-in-ruby-cli. This
+project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to
 the [code of conduct](https://github.com/lucasmenezesds/pomodoro-in-ruby-cli/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
