@@ -33,14 +33,15 @@ module PirbCli
         timer_settings = {}
 
         timer_settings[:cycles] = @prompt.ask('Number of Cycles?', convert: :int, default: 4)
-        timer_settings[:focus_time] = @prompt.ask('Focus Time?', convert: :int, default: 25)
-        timer_settings[:short_break] = @prompt.ask('Short Resting Time?', convert: :int, default: 5)
-        timer_settings[:long_break] = @prompt.ask('Long Resting Time?', convert: :int, default: 20)
+        timer_settings[:focus_time] = @prompt.ask('Focus Time? (Minutes)', convert: :int, default: 25)
+        timer_settings[:short_break] = @prompt.ask('Short Resting Time? (Minutes)', convert: :int, default: 5)
+        timer_settings[:long_break] = @prompt.ask('Long Resting Time? (Minutes)', convert: :int, default: 20)
 
         timer_settings
       end
 
       def draw_help
+        puts draw_exit_command
         puts draw_cycle
         puts draw_full_cycle
         puts draw_default_settings
@@ -61,22 +62,34 @@ module PirbCli
 
       private
 
-      def draw_cycle
-        TTY::Box.frame(width: 30, title: { top_left: '1 Cycle' }, padding: [1, 0]) do
-          '1 Focus Time + 1 Short Rest'
+      def draw_box_frame_with_title(top_left_msg, box_message)
+        TTY::Box.frame(width: 30, title: { top_left: top_left_msg }, padding: [1, 0]) do
+          box_message
         end
+      end
+
+      def draw_box_frame_without_title(box_message)
+        TTY::Box.frame(width: 30, padding: [1, 0], align: :center) do
+          box_message
+        end
+      end
+
+      def draw_cycle
+        top_left_msg = '1 Cycle'
+        box_message = '1 Focus Time + 1 Short Rest'
+        draw_box_frame_with_title(top_left_msg, box_message)
       end
 
       def draw_full_cycle
-        TTY::Box.frame(width: 30, title: { top_left: 'Full Cycle' }, padding: [1, 0]) do
-          '4 Cycles + Long Rest'
-        end
+        box_message = '4 Cycles + Long Rest'
+        top_left_msg = 'Full Cycle'
+        draw_box_frame_with_title(box_message, top_left_msg)
       end
 
       def draw_default_settings
-        TTY::Box.frame(width: 30, title: { top_left: 'Default Settings' }, padding: [1, 0]) do
-          "Cycles: 4\nFocus Time: 25 min\nShort Rest: 05 min\nLong  Rest: 20 min"
-        end
+        top_left_msg = 'Default Settings'
+        box_message = "Cycles: 4\nFocus Time: 25 min\nShort Rest: 05 min\nLong  Rest: 20 min"
+        draw_box_frame_with_title(top_left_msg, box_message)
       end
 
       def draw_bye_bye
@@ -86,15 +99,19 @@ module PirbCli
       end
 
       def draw_congratulate(cycles)
-        TTY::Box.frame(width: 30, padding: [1, 0], align: :center) do
-          "Congratulations!\n\nYou did #{cycles} cycles!\n\nSee you!"
-        end
+        box_message = "Congratulations!\n\nYou did #{cycles} cycles!\n\nSee you!"
+        draw_box_frame_without_title(box_message)
       end
 
       def draw_interrupt
-        TTY::Box.frame(width: 30, padding: [1, 0], align: :center) do
-          "It seems you want to leave...\n\nBye Bye!"
-        end
+        box_message = "It seems you want to leave...\n\nBye Bye!"
+        draw_box_frame_without_title(box_message)
+      end
+
+      def draw_exit_command
+        top_left_msg = 'To quit anytime'
+        box_message = 'CTRL + C'
+        draw_box_frame_with_title(top_left_msg, box_message)
       end
     end
   end
