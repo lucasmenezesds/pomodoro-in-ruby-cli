@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors = ['Lucas M']
 
   spec.summary = 'Pomodoro Timer in Ruby - CLI Version'
-  spec.description = 'Pomodoro Timer in Ruby - CLI Version '
+  spec.description = 'Pomodoro Timer in Ruby - CLI Version'
   spec.homepage = 'https://github.com/lucasmenezesds/pomodoro-in-ruby-cli'
   spec.license = 'MIT'
   spec.required_ruby_version = '~> 3.0'
@@ -32,4 +32,5 @@ Gem::Specification.new do |spec|
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html
+  spec.metadata['rubygems_mfa_required'] = 'true'
 end
