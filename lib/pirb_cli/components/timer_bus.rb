@@ -18,7 +18,7 @@ module PirbCli
       def run(type)
         setup_current_timer(type)
         start_timer
-        @notifier.show(type: type)
+        @notifier.notify(type: type)
         true
       end
 

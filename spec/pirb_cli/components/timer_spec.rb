@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rspec'
 
 describe PirbCli::Components::Timer do
@@ -6,7 +8,7 @@ describe PirbCli::Components::Timer do
 
   context 'successful behaviors' do
     describe '#initialize' do
-      it "should have the expected attr_readers" do
+      it 'has the expected attr_readers' do
         expect(timer.type).to eq('focus')
         expect(timer.name).to eq('focus timer')
         expect(timer.time).to eq(300)
@@ -15,8 +17,8 @@ describe PirbCli::Components::Timer do
     end
 
     describe '#tick' do
-      it "should reduce current_time by 1" do
-        stub_const("PirbCli::Components::Timer::TIME_MULTIPLIER", 1)
+      it 'reduces current_time by 1' do
+        stub_const('PirbCli::Components::Timer::TIME_MULTIPLIER', 1)
 
         expect(timer).to receive(:sleep).exactly(1)
 
@@ -27,8 +29,8 @@ describe PirbCli::Components::Timer do
     end
 
     describe '#reset' do
-      it "should set time equal to total_time" do
-        stub_const("PirbCli::Components::Timer::TIME_MULTIPLIER", 1)
+      it 'sets time equal to total_time' do
+        stub_const('PirbCli::Components::Timer::TIME_MULTIPLIER', 1)
 
         expect(timer).to receive(:sleep).exactly(2)
 

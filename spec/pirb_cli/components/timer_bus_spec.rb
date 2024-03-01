@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 require 'rspec'
 
 describe PirbCli::Components::TimerBus do
-
   let(:focus_timer) { instance_double(PirbCli::Components::Timer, type: 'focus') }
-  let(:short_timer) { instance_double(PirbCli::Components::Timer, type: 'short_break', reset: true, name: 'shorty', total_time: 10) }
+  let(:short_timer) do
+    instance_double(PirbCli::Components::Timer, type: 'short_break', reset: true, name: 'shorty', total_time: 10)
+  end
   let(:long_timer) { instance_double(PirbCli::Components::Timer, type: 'long_break') }
   let(:progress_bar) { instance_double(PirbCli::Components::PomodoroProgressBar) }
   let(:timer_bus) do
@@ -12,9 +15,8 @@ describe PirbCli::Components::TimerBus do
   end
 
   context 'with correct params' do
-
     describe '#define_current_timer' do
-      it 'it should return the expected timer according to the type' do
+      it 'returns the expected timer according to the type' do
         allow(PirbCli::Components::Timer).to receive(:new).and_return(focus_timer, short_timer, long_timer)
 
         result_focus = timer_bus.define_current_timer('focus')
@@ -27,9 +29,8 @@ describe PirbCli::Components::TimerBus do
       end
     end
 
-    describe "#setup_current_timer" do
-      it 'should define and reset the expected timer' do
-
+    describe '#setup_current_timer' do
+      it 'defines and reset the expected timer' do
         expect(timer_bus).to receive(:define_current_timer).with('short_break').and_return(short_timer).exactly(1)
         expect(short_timer).to receive(:reset).exactly(1)
         expect(PirbCli::Components::PomodoroProgressBar).to receive(:new).with(title: 'shorty', total: 10).exactly(1)
@@ -37,6 +38,5 @@ describe PirbCli::Components::TimerBus do
         timer_bus.setup_current_timer('short_break')
       end
     end
-
   end
 end
