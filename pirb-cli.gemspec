@@ -17,8 +17,6 @@ Gem::Specification.new do |spec|
   # delete this section to allow pushing this gem to any host.
   raise 'RubyGems 2.0 or newer is required to protect against public gem pushes.' unless spec.respond_to?(:metadata)
 
-  spec.metadata['allowed_push_host'] = "TODO: Set to 'https://mygemserver.com'"
-
   spec.metadata['homepage_uri'] = spec.homepage
 
   # Specify which files should be added to the gem when it is released.
