@@ -6,7 +6,7 @@ describe PirbCli::Components::Timer do
   let(:progress_bar_mock) { instance_double(PirbCli::Components::ProgressBar) }
   let(:timer) { described_class.new(total_time: 5, type: 'focus', name: 'focus timer') }
 
-  context 'successful behaviors' do
+  context 'when successful behaviors happens' do
     describe '#initialize' do
       it 'has the expected attr_readers' do
         expect(timer.type).to eq('focus')
@@ -31,11 +31,11 @@ describe PirbCli::Components::Timer do
     describe '#reset' do
       it 'sets time equal to total_time' do
         stub_const('PirbCli::Components::Timer::TIME_MULTIPLIER', 1)
-
         expect(timer).to receive(:sleep).exactly(2)
 
         timer.tick
         timer.tick
+
         expect(timer.time).to eq(3)
 
         timer.reset
