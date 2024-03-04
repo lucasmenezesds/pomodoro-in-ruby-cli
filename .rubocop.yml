@@ -1,0 +1,44 @@
+require:
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - 'Guardfile'
+  NewCops: enable
+  TargetRubyVersion: 3
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Layout/LineLength:
+  Max: 160
+
+Metrics/MethodLength:
+  Max: 15
+
+Style/Documentation:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 25
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/StubbedMock:
+  Enabled: false
