@@ -5,6 +5,7 @@ require:
 AllCops:
   Exclude:
     - 'Guardfile'
+    - vendor/**/*
   NewCops: enable
   TargetRubyVersion: 3
 
