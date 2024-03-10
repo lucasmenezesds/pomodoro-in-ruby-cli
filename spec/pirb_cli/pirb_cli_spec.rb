@@ -2,33 +2,33 @@
 
 # rubocop: disable RSpec/SubjectStub
 RSpec.describe PirbCli do
-  subject(:pomodoro_timer) { PirbCli::PomodoroTimer.new }
+  subject(:pomodoro_timer) { described_class::PomodoroTimer.new }
 
-  let(:prompt_mock) { instance_double(PirbCli::Components::Prompt) }
-  let(:timer_bus_mock) { instance_double(PirbCli::Components::TimerBus) }
+  let(:prompt_mock) { instance_double(described_class::Components::Prompt) }
+  let(:timer_bus_mock) { instance_double(described_class::Components::TimerBus) }
   let(:settings) { { cycles: 4, focus_time: 25, short_break: 5, long_break: 20 } }
 
   before do
     # Mocking all Prompts
-    allow(PirbCli::Components::Prompt).to receive(:new).and_return(prompt_mock)
+    allow(described_class::Components::Prompt).to receive(:new).and_return(prompt_mock)
     allow(prompt_mock).to receive(:ask_settings).and_return(settings)
     allow(prompt_mock).to receive(:interrupted)
     allow(prompt_mock).to receive(:start_next_timer?)
     allow(prompt_mock).to receive(:congratulate)
 
     # Mocking TimerBus
-    allow(PirbCli::Components::TimerBus).to receive(:new).and_return(timer_bus_mock)
+    allow(described_class::Components::TimerBus).to receive(:new).and_return(timer_bus_mock)
     allow(timer_bus_mock).to receive(:run)
   end
 
   it 'has a version number' do
-    expect(PirbCli::VERSION).not_to be_nil
+    expect(described_class::VERSION).not_to be_nil
   end
 
   describe '#start' do
     context 'when settings are provided' do
       it 'initializes TimerBus with the correct settings and starts cycles' do
-        expect(PirbCli::Components::TimerBus).to receive(:new).with(focus_time: 25, short_break: 5, long_break: 20)
+        expect(described_class::Components::TimerBus).to receive(:new).with(focus_time: 25, short_break: 5, long_break: 20)
 
         pomodoro_timer.start
       end
